@@ -10,7 +10,7 @@ Set-DefaultAWSRegion -Region $region
 
 #Get the VPC and AZs
 #This assumes you used globo-primary for the name of the VPC
-$vpc = Get-EC2Vpc -Filter @{Name="tag:Name"; Values="globo-primary"}
+$vpc = Get-EC2Vpc -Filter @{Name="tag:Name"; Values="mw-primary"}
 $azs = Get-EC2AvailabilityZone
 $az = ($azs | Sort-Object -Property ZoneName)[2]
 
@@ -22,7 +22,7 @@ $publicSubnet = New-EC2Subnet -AvailabilityZone $az.ZoneName `
 
 #Get the Public route table for all public subnets and associate the new public subnet
 $publicRouteTable = Get-EC2RouteTable `
-     -Filter @{ Name="tag:Name"; values="globo-primary-public"} -Region $region
+     -Filter @{ Name="tag:Name"; values="mw-primary-public"} -Region $region
 $publicRouteTableAssociation = Register-EC2RouteTable `
      -RouteTableId $publicRouteTable.RouteTableId -SubnetId $publicSubnet.SubnetId
 
