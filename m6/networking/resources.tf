@@ -38,12 +38,12 @@ data "aws_availability_zones" "available" {}
 data "consul_keys" "networking" {
   key {
     name = "networking"
-    path = terraform.workspace == "default" ? "networking/configuration/globo-primary/net_info" : "networking/configuration/globo-primary/${terraform.workspace}/net_info"
+    path = terraform.workspace == "default" ? "networking/configuration/mw-primary/net_info" : "networking/configuration/mw-primary/${terraform.workspace}/net_info"
   }
 
   key {
     name = "common_tags"
-    path = "networking/configuration/globo-primary/common_tags"
+    path = "networking/configuration/mw-primary/common_tags"
   }
 }
 

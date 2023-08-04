@@ -9,7 +9,7 @@ cd consul
 export CONSUL_HTTP_TOKEN=SECRETID_VALUE
 
 # Windows
-$env:CONSUL_HTTP_TOKEN="SECRETID_VALUE"
+$env:CONSUL_HTTP_TOKEN="68df8582-34a5-0285-788d-efe95b2d2a4e"
 
 # Write the configuration data for globo-primary config
 consul kv put networking/configuration/globo-primary/net_info @globo-primary.json
@@ -19,7 +19,7 @@ consul kv put networking/configuration/globo-primary/common_tags @common-tags.js
 cd ..\networking
 
 ## We're going to initialize the Terraform config to use the Consul backend
-terraform init -backend-config="path=networking/state/globo-primary"
+terraform init -backend-config="path=networking/state/mw-primary"
 
 # Verify our state is loaded
 terraform state list
@@ -33,13 +33,13 @@ terraform plan -out config.tfplan
 cd ..\consul
 
 # Write new data
-consul kv put networking/configuration/globo-primary/net_info @globo-primary-2.json
+consul kv put networking/configuration/mw-primary/net_info @globo-primary-2.json
 
 # Go into the networking2 folder
 cd ..\networking2
 
 ## We're going to initialize the Terraform config to use the Consul backend
-terraform init -backend-config="path=networking/state/globo-primary"
+terraform init -backend-config="path=networking/state/mw-primary"
 
 # Verify our state is loaded
 terraform state list

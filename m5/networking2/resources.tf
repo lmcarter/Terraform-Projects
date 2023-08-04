@@ -38,12 +38,12 @@ data "aws_availability_zones" "available" {}
 data "consul_keys" "networking" {
   key {
     name = "networking"
-    path = "networking/configuration/globo-primary/net_info"
+    path = "networking/configuration/mw-primary/net_info"
   }
 
   key {
     name = "common_tags"
-    path = "networking/configuration/globo-primary/common_tags"
+    path = "networking/configuration/mw-primary/common_tags"
   }
 }
 

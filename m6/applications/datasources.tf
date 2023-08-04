@@ -5,12 +5,12 @@
 data "consul_keys" "applications" {
   key {
     name = "applications"
-    path = terraform.workspace == "default" ? "applications/configuration/globo-primary/app_info" : "applications/configuration/globo-primary/${terraform.workspace}/app_info"
+    path = terraform.workspace == "default" ? "applications/configuration/mw-primary/app_info" : "applications/configuration/mw-primary/${terraform.workspace}/app_info"
   }
 
   key {
     name = "common_tags"
-    path = "applications/configuration/globo-primary/common_tags"
+    path = "applications/configuration/mw-primary/common_tags"
   }
 }
 
@@ -20,7 +20,7 @@ data "terraform_remote_state" "networking" {
   config = {
     address = "127.0.0.1:8500"
     scheme  = "http"
-    path    = terraform.workspace == "default" ? "networking/state/globo-primary" : "networking/state/globo-primary-env:${terraform.workspace}"
+    path    = terraform.workspace == "default" ? "networking/state/mw-primary" : "networking/state/mw-primary-env:${terraform.workspace}"
   }
 }
 
